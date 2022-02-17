@@ -39,9 +39,3 @@ function About() {
 }
 
 export default About;
-
-export const getStaticProps: GetServerSideProps = async () => {
-  const pokemonOrdered = await getPokemonInOrder();
-  const DAY_IN_SECONDS = 60 * 60 * 24;
-  return { props: { pokemon: pokemonOrdered }, revalidate: DAY_IN_SECONDS };
-};
