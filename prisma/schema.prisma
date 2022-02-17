@@ -2,17 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
+  provider             = "mysql"
   url                  = env("DATABASE_URL")
   shadowDatabaseUrl    = env("SHADOW_URL")
   referentialIntegrity = "prisma"
 }
-
 
 model Vote {
   id        String   @id @default(cuid())
@@ -21,8 +20,8 @@ model Vote {
   votedForId     Int
   votedAgainst   Pokemon @relation(name: "votesAgainst", fields: [votedAgainstId], references: [id])
   votedAgainstId Int
-  //@@index([votedForId])
-  //@@index([votedAgainstId])
+  @@index([votedForId])
+  @@index([votedAgainstId])
 }
 
 model Pokemon {
