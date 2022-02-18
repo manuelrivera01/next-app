@@ -1,3 +1,4 @@
+import type { GetServerSideProps } from 'next';
 import { prisma } from '@/backend/utils/prisma';
 import { AsyncReturnType } from '@/utils/ts-bs';
 
@@ -63,6 +64,8 @@ const PokemonListing: React.FC<{
 const ResultsPage: React.FC<{
   pokemon: PokemonQueryResult;
 }> = (props) => {
+  const data = props.pokemon;
+
   return (
     <div className='flex flex-col items-center'>
       <Head>
@@ -70,7 +73,7 @@ const ResultsPage: React.FC<{
       </Head>
       <h2 className='text-2xl p-4'>Results</h2>
       <div className='flex flex-col w-full max-w-2xl border'>
-        {props.pokemon
+        {data
           .sort((a, b) => {
             const difference =
               generateCountPercent(b) - generateCountPercent(a);
@@ -96,3 +99,9 @@ const ResultsPage: React.FC<{
 };
 
 export default ResultsPage;
+
+export const getStaticProps: GetServerSideProps = async () => {
+  const pokemonOrdered = await getPokemonInOrder();
+  const DAY_IN_SECONDS = 60 * 60 * 24;
+  return { props: { pokemon: pokemonOrdered }, revalidate: DAY_IN_SECONDS };
+};
