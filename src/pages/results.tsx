@@ -60,39 +60,8 @@ const PokemonListing: React.FC<{
   );
 };
 
-const ResultsPage: React.FC<{
-  pokemon: PokemonQueryResult;
-}> = (props) => {
-  return (
-    <div className='flex flex-col items-center'>
-      <Head>
-        <title>Roundest Pokemon Results</title>
-      </Head>
-      <h2 className='text-2xl p-4'>Results</h2>
-      <div className='flex flex-col w-full max-w-2xl border'>
-        {props.pokemon
-          .sort((a, b) => {
-            const difference =
-              generateCountPercent(b) - generateCountPercent(a);
+function About() {
+  return <div>About</div>;
+}
 
-            if (difference === 0) {
-              return b._count.VoteFor - a._count.VoteFor;
-            }
-
-            return difference;
-          })
-          .map((currentPokemon, index) => {
-            return (
-              <PokemonListing
-                pokemon={currentPokemon}
-                key={index}
-                rank={index + 1}
-              />
-            );
-          })}
-      </div>
-    </div>
-  );
-};
-
-export default ResultsPage;
+export default About;
