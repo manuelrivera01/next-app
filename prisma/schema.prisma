@@ -31,3 +31,4 @@ model Pokemon {
   VoteFor     Vote[] @relation("votesFor")
   VoteAgainst Vote[] @relation("votesAgainst")
 }
+
