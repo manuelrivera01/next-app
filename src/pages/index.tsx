@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { usePlausible } from 'next-plausible';
 
 const btn =
-  'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow';
+  'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-5';
 
 const Home: NextPage = () => {
   const {
@@ -51,17 +51,19 @@ const Home: NextPage = () => {
   return (
     <div className='h-screen w-screen flex flex-col justify-between items-center relative'>
       <Head>
-        <title>Roundest Pokemon</title>
+        <title></title>
       </Head>
-      <div className='text-2xl text-center pt-8'>Which Pokémon is Rounder?</div>
+      <div className='text-2xl text-center pt-8'>
+        ¿Qué lugar prefieres visitar?
+      </div>
       {pokemonPair && (
-        <div className='p-8 flex justify-between items-center max-w-2xl flex-col md:flex-row animate-fade-in'>
+        <div className='p-8 flex justify-between items-center flex-col md:flex-row animate-fade-in '>
           <PokemonListing
             pokemon={pokemonPair.firstPokemon}
             vote={() => voteForRoundest(pokemonPair.firstPokemon.id)}
             disabled={fetchingNext}
           />
-          <div className='p-8 italic text-xl'>{'or'}</div>
+          <div className='p-8 italic text-xl mr-5 ml-5'>{'o'}</div>
           <PokemonListing
             pokemon={pokemonPair.secondPokemon}
             vote={() => voteForRoundest(pokemonPair.secondPokemon.id)}
@@ -73,11 +75,7 @@ const Home: NextPage = () => {
       {!pokemonPair && <img src='/rings.svg' className='w-48' />}
       <div className='w-full text-xl text-center pb-2'>
         <Link href='/results'>
-          <a>Results</a>
-        </Link>
-        <span className='p-4'>{'-'}</span>
-        <Link href='/about'>
-          <a>About</a>
+          <a>Resultados</a>
         </Link>
       </div>
     </div>
@@ -98,22 +96,23 @@ const PokemonListing: React.FC<{
       }`}
       key={props.pokemon.id}
     >
-      <div className='text-xl text-center capitalize mt-[-0.5rem]'>
+      <div className='text-xl text-center capitalize mb-10'>
         {props.pokemon.name}
       </div>
       <Image
         src={props.pokemon.spriteUrl}
-        width={256}
-        height={256}
+        width={450}
+        height={400}
         layout='fixed'
-        className='animate-fade-in'
+        className='animate-fade-in '
       />
+      <br />
       <button
         className={btn}
         onClick={() => props.vote()}
         disabled={props.disabled}
       >
-        Rounder
+        Seleccionar
       </button>
     </div>
   );

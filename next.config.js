@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['raw.githubusercontent.com'],
+    domains: ['cdn.pixabay.com'],
     minimumCacheTTL: 6000000,
   },
 };

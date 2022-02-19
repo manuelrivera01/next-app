@@ -69,9 +69,9 @@ const ResultsPage: React.FC<{
   return (
     <div className='flex flex-col items-center'>
       <Head>
-        <title>Roundest Pokemon Results</title>
+        <title></title>
       </Head>
-      <h2 className='text-2xl p-4'>Results</h2>
+      <h2 className='text-2xl p-4'>Resultados</h2>
       <div className='flex flex-col w-full max-w-2xl border'>
         {data
           .sort((a, b) => {
